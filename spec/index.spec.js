@@ -10,6 +10,33 @@ describe('random.bytes library', () => {
     const keys = Object.keys(obj)
     expect(keys.includes('generate')).toBeTrue()
   })
+  it('returns an object that has hex(), base64(), ascii() and utf8()', () => {
+    const obj = lib()
+    const keys = Object.keys(obj)
+    const fns = ['hex', 'base64', 'ascii', 'utf8']
+    expect(fns.every(i => keys.includes(i))).toBeTrue()
+    expect(fns.every(i => typeof obj[i] === 'function')).toBeTrue()
+  })
+  it('hex() returns a string', () => {
+    const actual = lib().hex()
+    expect(typeof actual).toEqual('string')
+    expect(actual.length).toBeGreaterThan(0)
+  })
+  it('base64() returns a string', () => {
+    const actual = lib().base64()
+    expect(typeof actual).toEqual('string')
+    expect(actual.length).toBeGreaterThan(0)
+  })
+  it('utf8() returns a string', () => {
+    const actual = lib().utf8()
+    expect(typeof actual).toEqual('string')
+    expect(actual.length).toBeGreaterThan(0)
+  })
+  it('ascii() returns a string', () => {
+    const actual = lib().ascii()
+    expect(typeof actual).toEqual('string')
+    expect(actual.length).toBeGreaterThan(0)
+  })
   describe('lib().generate', () => {
     const generate = lib().generate
     it('is a function of arity 1', () => {

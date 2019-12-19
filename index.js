@@ -6,19 +6,28 @@ function setup (bufferLib, cryptoLib) {
   const { alloc } = bufferLib.Buffer
   const { randomFillSync } = cryptoLib
 
-  /* function for generating random bytes, of byte length 32 by default */
-  function generate (idLength = 32) {
-    /* create the block to store random bytes */
-    const block = alloc(idLength / 2)
+  function generate (byteLength = 32) {
+    /* create the buffer to store random bytes */
+    const buffer = alloc(byteLength)
 
     /* fill with random data */
-    randomFillSync(block)
+    randomFillSync(buffer)
 
     /* convert to string and return */
-    return block.toString('hex').slice(0, idLength)
+    return {
+      buffer,
+      hex: buffer.toString('hex'),
+      base64: buffer.toString('base64'),
+      ascii: buffer.toString('ascii'),
+      utf8: buffer.toString('utf-8')
+    }
   }
   return {
     generate,
+    hex: () => generate().hex,
+    base64: () => generate().base64,
+    ascii: () => generate().ascii,
+    utf8: () => generate().utf8,
     bufferLib,
     cryptoLib
   }
