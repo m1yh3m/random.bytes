@@ -1,4 +1,4 @@
-const lib = require('../index')
+const lib = require('./random.bytes')
 
 describe('random.bytes library', () => {
   it('is a function of arity 2', () => {

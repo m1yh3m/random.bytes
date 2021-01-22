@@ -1,4 +1,3 @@
-
 function setup (bufferLib, cryptoLib) {
   bufferLib = bufferLib || require('buffer')
   cryptoLib = cryptoLib || require('crypto')
@@ -22,6 +21,7 @@ function setup (bufferLib, cryptoLib) {
       utf8: buffer.toString('utf-8')
     }
   }
+
   return {
     generate,
     hex: () => generate().hex,
